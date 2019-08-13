@@ -41,24 +41,15 @@ The above parameters map to the env variables defined in [bitnami/mongodb](http:
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
-```bash
-$ helm install --name my-release \
-  --set mongodbRootPassword=secretpassword,mongodbUsername=my-user,mongodbPassword=my-password,mongodbDatabase=my-database \
-    stable/mongodb
+## 安装使用
+
+### helm install
+```shell
+打包Chart
+$ helm package fengshunli-mongodb
+
+本地安装
+$ helm install fengshunli-mongodb fengshunli-mongodb-0.1.0.tgz
 ```
 
-The above command sets the MongoDB `root` account password to `secretpassword`. Additionally, it creates a standard database user named `my-user`, with the password `my-password`, who has access to a database named `my-database`.
 
-Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
-
-```bash
-$ helm install --name my-release -f values.yaml stable/mongodb
-```
-
-> **Tip**: You can use the default [values.yaml](values.yaml)
-
-## Persistence
-
-The [Bitnami MongoDB](https://github.com/bitnami/bitnami-docker-mongodb) image stores the MongoDB data and configurations at the `/bitnami/mongodb` path of the container.
-
-The chart mounts a [Persistent Volume](http://kubernetes.io/docs/user-guide/persistent-volumes/) at this location. The volume is created using dynamic volume provisioning.
